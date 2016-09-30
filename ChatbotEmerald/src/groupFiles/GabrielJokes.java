@@ -2,8 +2,11 @@ package groupFiles;
 
 public class GabrielJokes implements Chatbot {
 	
+	private boolean inJokeLoop;
+	private String[] knockKnockJokes = {"Knock Knock", "Etch", "Amos" };
+	private String[] knockKnockAnswers = {"Bless you", "A mosquito"}; 
+	
 	public void talk() {
-		// TODO Auto-generated method stub
 		
 	}
 
