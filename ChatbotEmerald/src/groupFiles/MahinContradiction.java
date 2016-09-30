@@ -30,7 +30,9 @@ public class MahinContradiction implements Chatbot{
 			//for each user response, if it finds response with similar beginning,
 			//and the rest is different, it will notice.
 			//for each user response, it goes through each word and checks to see
-			//if it matches its recent response. once it notices a mismatch, it says:
+			//if it matches its recent response. once it notices a mismatch,
+			//it takes the comment before the new comment or theOriginalComment
+			//(comments that are both similar to each other) and it says:
 			//"i thought you said:" + theOriginalComment
 		}
 	}

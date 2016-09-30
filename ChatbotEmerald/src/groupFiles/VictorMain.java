@@ -48,7 +48,7 @@ public class VictorMain {
 			}if(victor.isTriggered(response)){
 				victor.talk();
 			}
-			// response to liking school
+			// response to liking school heck
 //			else if(school.isTriggered(response)){
 //				print("School is great. Tell me about school.");
 //				// exit this while loop
@@ -81,7 +81,7 @@ public class VictorMain {
 			// check character in front if it exists
 			if(position > 0){
 				before = searchString.substring(position - 1, position);
-			//	System.out.println("The character before is " + before);
+			// 	System.out.println("The character before is " + before);
 			}
 			// check if there is a character after the keyword
 			if(position + keyword.length() < searchString.length()){
