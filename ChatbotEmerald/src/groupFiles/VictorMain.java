@@ -136,6 +136,9 @@ public class VictorMain {
 		// initialize group chatbots below
 //		school = new VictorSchool();
 		veeraj = new VeerajMath();
+		gabriel = new GabrielJokes();
+		mahin = new MahinContradiction();
+		victor = new VictorGame();
 	}
 	
 	public static void demonstrateStringMethods(){
