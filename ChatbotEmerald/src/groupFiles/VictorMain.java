@@ -10,6 +10,10 @@ public class VictorMain {
 	// list all the chatbots available under this class
 	// add group chatbots below (see example)
 	// static Chatbot school;
+	static Chatbot veeraj;
+	static Chatbot gabriel;
+	static Chatbot mahin;
+	static Chatbot victor;
 
 	public static void main(String[] args) {
 		// demonstrateStringMethods();
@@ -33,6 +37,7 @@ public class VictorMain {
 			if(findKeyword(response, "good", 0) >= 0){
 				print("That's wonderful." + "So glad you feel good.");
 			}
+			if(veeraj.isTriggered(response))veeraj.talk();
 			// response to liking school
 //			else if(school.isTriggered(response)){
 //				print("School is great. Tell me about school.");
@@ -130,7 +135,7 @@ public class VictorMain {
 		user = "";
 		// initialize group chatbots below
 //		school = new VictorSchool();
-		
+		veeraj = new VeerajMath();
 	}
 	
 	public static void demonstrateStringMethods(){

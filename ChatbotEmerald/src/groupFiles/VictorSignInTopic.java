@@ -10,7 +10,7 @@ public class VictorSignInTopic implements Chatbot{
 	}
 
 	public void talk() {
-
+		
 		
 	}
 }
