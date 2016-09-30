@@ -48,7 +48,7 @@ public class VictorMain {
 			}if(victor.isTriggered(response)){
 				victor.talk();
 			}
-			// response to liking school
+			// response to liking school heck
 //			else if(school.isTriggered(response)){
 //				print("School is great. Tell me about school.");
 //				// exit this while loop
