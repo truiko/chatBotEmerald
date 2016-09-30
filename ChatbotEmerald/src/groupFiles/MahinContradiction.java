@@ -35,7 +35,7 @@ public class MahinContradiction implements Chatbot{
 				inContradictionLoop = false;
 				VictorMain.promptForever();
 			}
-			VictorMain.print("You may have contradicted yourself...");
+			VictorMain.print("You may have contradicted yourself....");
 			//for each user response, if it finds response with similar beginning,
 			//and the rest is different, it will notice.
 			//for each user response, it goes through each word and checks to see
