@@ -7,14 +7,13 @@ public class VeerajMath implements Chatbot{
 	public void talk() {
 		inMathLoop = true;
 		while(inMathLoop){
-			VictorMain.print("(Type 'quit' to go back.)");
-			//this is called a static call m
+			VictorMain.print("This is the math section. Type quit to quit.");
+			//this is called a static cal
 			mathResponse = VictorMain.promptInput();
 			if(mathResponse.indexOf("quit") >= 0){
 				inMathLoop = false;
 				VictorMain.promptForever();
 			}
-			VictorMain.print("What do you want to solve?");
 		}
 	}
 
