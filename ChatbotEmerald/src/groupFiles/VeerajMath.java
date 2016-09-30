@@ -8,7 +8,7 @@ public class VeerajMath implements Chatbot{
 		inMathLoop = true;
 		while(inMathLoop){
 			VictorMain.print("(Type 'quit' to go back.)");
-			//this is called a static call
+			//this is called a static call m
 			mathResponse = VictorMain.promptInput();
 			if(mathResponse.indexOf("quit") >= 0){
 				inMathLoop = false;
