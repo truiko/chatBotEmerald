@@ -1,8 +1,7 @@
 package groupFiles;
 
-//import chatbot.VictorMain;
+//import groupFiles.VictorMain;
 
-//import chatbot.MahinMain;
 
 public class MahinContradiction implements Chatbot{
 	private boolean inContradictionLoop;
