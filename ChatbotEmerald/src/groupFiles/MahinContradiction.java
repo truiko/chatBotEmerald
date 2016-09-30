@@ -42,6 +42,7 @@ public class MahinContradiction implements Chatbot{
 			//it takes the comment before the new comment or theOriginalComment
 			//(comments that are both similar to each other) and it says:
 			//"i thought you said:" + theOriginalComment
+			//
 		}
 	}
 }
