@@ -37,7 +37,17 @@ public class VictorMain {
 			if(findKeyword(response, "good", 0) >= 0){
 				print("That's wonderful." + "So glad you feel good.");
 			}
-			if(veeraj.isTriggered(response))veeraj.talk();
+			if(veeraj.isTriggered(response)){
+				veeraj.talk();
+			}
+			if(gabriel.isTriggered(response)){
+				gabriel.talk();
+			}
+			if(mahin.isTriggered(response)){
+				mahin.talk();
+			}if(victor.isTriggered(response)){
+				victor.talk();
+			}
 			// response to liking school
 //			else if(school.isTriggered(response)){
 //				print("School is great. Tell me about school.");
