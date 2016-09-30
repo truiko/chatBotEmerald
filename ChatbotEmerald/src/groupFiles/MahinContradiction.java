@@ -1,5 +1,7 @@
 package groupFiles;
 
+//import chatbot.VictorMain;
+
 //import chatbot.MahinMain;
 
 public class MahinContradiction implements Chatbot{
@@ -26,7 +28,14 @@ public class MahinContradiction implements Chatbot{
 	public void talk(){
 		inContradictionLoop = true;
 		while(inContradictionLoop){
-			//if()
+			VictorMain.print("Type 'quit' to go back.");
+			contradictionResponse = VictorMain.promptInput();//static call on promptInput method from
+			//MahinMain class
+			if(contradictionResponse.indexOf("quit") >= 0){
+				inContradictionLoop = false;
+				VictorMain.promptForever();
+			}
+			VictorMain.print("You may have contradicted yourself.");
 			//for each user response, if it finds response with similar beginning,
 			//and the rest is different, it will notice.
 			//for each user response, it goes through each word and checks to see
