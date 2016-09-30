@@ -69,11 +69,11 @@ public class VictorMain {
 		// make lower case
 		searchString = searchString.toLowerCase();
 		keyword = keyword.toLowerCase();
-		// System.out.println("The phrase is " + searchString);
-		// System.out.println("The keyword is " + keyword);
+		System.out.println("The phrase is " + searchString);
+		System.out.println("The keyword is " + keyword);
 		// first position of key word
 		int position = searchString.indexOf(keyword);
-		// System.out.println("The keyword was found at "+ position);
+		System.out.println("The keyword was found at "+ position);
 		while(position >= 0){
 			// assume preceeded and followed by space
 			String before = " ";
@@ -81,24 +81,24 @@ public class VictorMain {
 			// check character in front if it exists
 			if(position > 0){
 				before = searchString.substring(position - 1, position);
-			//	System.out.println("The character before is " + before);
+				System.out.println("The character before is " + before);
 			}
 			// check if there is a character after the keyword
 			if(position + keyword.length() < searchString.length()){
 				after = searchString.substring(position + keyword.length(), position +
 						keyword.length() + 1);
-			//	System.out.println("The character after is " + after);
+				System.out.println("The character after is " + after);
 			}
 			if(before.compareTo("a") < 0 && after.compareTo("a") < 0 && noNegations(searchString, position)){
-			//	System.out.println("Found " + keyword + " at " + position );
+				System.out.println("Found " + keyword + " at " + position );
 				return position;
 			}
 			else{
 				// position + 1 is one space after our current position,
 				// so this finds the next word
 				position = searchString.indexOf(keyword, position + 1);
-			//	System.out.println("Did not find " + keyword + ", checking position " 
-			//	+ position );
+				System.out.println("Did not find " + keyword + ", checking position " 
+				+ position );
 			}
 		}
 		return -1;
