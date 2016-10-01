@@ -10,17 +10,25 @@ public class VeerajMath implements Chatbot{
 	public void talk() {
 		makeFields();
 		inMathLoop = true;
+		String operant1 = "";
+		String operant2 = "";
+		String answer = "";
+		int temp;
 		VictorMain.print("This is the math section. Type quit to quit.");
 		//this is called a static call
 		while(inMathLoop){
 			VictorMain.print("Enter a math problem you wish to solve");
 			mathQuestion = question.nextLine();
 			VictorMain.print(mathQuestion);
-			for(int i = 0; i < mathQuestion.length(); i++){
+			//for(int i = 0; i < mathQuestion.length(); i++){
 				if(mathQuestion.indexOf("+") > 0){
-					VictorMain.print("This is an addition problem");
-				}
-				i++;
+					temp = mathQuestion.indexOf("+");
+					operant1 = mathQuestion.substring(0, 0);
+					operant2 = mathQuestion.substring(temp + 1, temp + 1);
+					answer = operant1 + operant2;
+					System.out.println(temp);
+				//}
+				//i++;
 			}
 			/*getIntegerInput();
 			mathResponse = VictorMain.promptInput();
