@@ -3,12 +3,7 @@ package groupFiles;
 public class GabrielJokes implements Chatbot {
 	
 	private boolean inJokeLoop;
-	private String[] knockKnockJokes = {"Knock Knock", "Etch", "Amos" };
-	private String[] knockKnockAnswers = {"Bless you", "A mosquito"}; 
-	
-	public void talk() {
-		
-	}
+	private String jokeResponse;
 
 	public boolean isTriggered(String userInput) {
 
@@ -18,4 +13,16 @@ public class GabrielJokes implements Chatbot {
 		return false;
 	}
 
+	public void talk() {
+		inJokeLoop = true;
+		while(inJokeLoop){
+			VictorMain.print("Would you like to hear a joke?");
+			jokeResponse = VictorMain.promptInput();
+			if(jokeResponse.indexOf("no") >= 0){
+				inJokeLoop = false;
+				VictorMain.print("Fine then");
+				VictorMain.promptForever();
+			}
+		}
+	}
 }
