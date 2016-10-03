@@ -5,55 +5,60 @@ import java.util.Scanner;
 public class VeerajMath implements Chatbot{
 	private boolean inMathLoop;
 	private String mathQuestion;
+	private String quit2;
 	static Scanner question;
 	static Scanner in;
+	static Scanner op1;
+	static Scanner op2;
+	static Scanner res;
+	static Scanner mid;
+	static Scanner quit;
 	private double num1;
 	private double num2;
 	private double result;
+	private String operation;
 	
 	public void talk() {
 		makeFields();
 		inMathLoop = true;
-		//String operant1 = "";
-		//String operant2 = "";
-		//String answer = "";
-		//int temp;
-		VictorMain.print("This is the math section. Type quit to quit.");
+		VictorMain.print("This is the math section. Do you want to leave?");
+		quit2 = quit.nextLine();
+		quit2 = quit2.toLowerCase();
+		if(VictorMain.findKeyword(quit2, "yes", 0) >= 0 || 
+				VictorMain.findKeyword(quit2, "yea", 0) >= 0){
+			inMathLoop = false;
+			VictorMain.print("I see you don't like math. Fine then.");
+			VictorMain.promptForever();
+		}
 		//this is called a static call
 		while(inMathLoop){
 			VictorMain.print("Enter the first number");
+			num1 = op1.nextDouble();
 			
-			mathQuestion = question.nextLine();
-			VictorMain.print(mathQuestion);
-			String[] temp = mathQuestion.split(" ");
-			for(int i = 0; i < temp.length; i++){
-				if(temp[i] == "+"){
-					System.out.println("hi");
-					
-				}
-			//for(int i = 0; i < mathQuestion.length(); i++){
-				//if(mathQuestion.indexOf("+") > 0){
-					//temp = mathQuestion.indexOf("+");
-					//operant1 = mathQuestion.substring(0, 0);
-					//operant2 = mathQuestion.substring(temp + 1, temp + 1);
-					//answer = operant1 + operant2;
-					//System.out.println(temp);
-				//}
-				//i++;
-				}
-				if(mathQuestion.indexOf("quit") >= 0){
-					inMathLoop = false;
-					VictorMain.print("I see you don't like math. Fine then.");
-					VictorMain.promptForever();
-				}
-			/*getIntegerInput();
-			mathResponse = VictorMain.promptInput();
-			if(mathResponse.indexOf("quit") >= 0){
-				inMathLoop = false;
-				VictorMain.promptForever();*/
+			VictorMain.print("Enter the second number");
+			num2 = op2.nextDouble();
+			
+			VictorMain.print("Enter the operation(+, -, *, /)");
+			operation = mid.nextLine();
+			
+			switch (operation){
+				case "+":
+					System.out.println(num1 + num2);
+					break;
+				case "-":
+					System.out.println(num1 - num2);
+					break;
+				case "*":
+					System.out.println(num1 * num2);
+					break;
+				case "/":
+					System.out.println(num1 / num2);
+					break;
+				default:
+					System.out.println("Please enter a valid operator");
 			}
 		}
-	//}
+	}
 	
 	private static int getIntegerInput() {
 		VictorMain.print("Please enter an integer.");
@@ -84,7 +89,13 @@ public class VeerajMath implements Chatbot{
 	
 	public void makeFields(){
 		question = new Scanner(System.in);
+		quit = new Scanner(System.in);
+		op1 = new Scanner(System.in);
+		op2 = new Scanner(System.in);
+		res = new Scanner(System.in);
+		mid = new Scanner(System.in);
 		String mathQuestion = "";
+		String quit2 = "";
 		double num1;
 		double num2;
 		double result;
