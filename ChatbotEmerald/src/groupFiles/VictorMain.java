@@ -7,6 +7,7 @@ public class VictorMain {
 	static boolean inMainLoop;
 	static Scanner input;
 	static String user;
+	static boolean triggered;
 	// list all the chatbots available under this class
 	// add group chatbots below (see example)
 	// static Chatbot school;
@@ -31,22 +32,31 @@ public class VictorMain {
 
 	public static void promptForever() {
 		inMainLoop = true;
+		triggered = false;
 		while(inMainLoop){
 			print("Hi, " + user + ". How are you?");
 			response = promptInput();
-			if(findKeyword(response, "good", 0) >= 0){
-				print("That's wonderful." + "So glad you feel good.");
-			}
+			
 			if(veeraj.isTriggered(response)){
 				veeraj.talk();
+				triggered = true;
 			}
 			if(gabriel.isTriggered(response)){
 				gabriel.talk();
+				triggered = true;
 			}
 			if(mahin.isTriggered(response)){
 				mahin.talk();
-			}if(victor.isTriggered(response)){
+				triggered = true;
+			}
+			if(victor.isTriggered(response)){
 				victor.talk();
+				triggered = true;
+			}
+			if(findKeyword(response, "good", 0) >= 0){
+				print("That's wonderful." + "So glad you feel good.");
+			}else if(triggered == false)
+				print("I don't understand.");
 			}
 			// response to liking school heck
 //			else if(school.isTriggered(response)){
@@ -56,12 +66,10 @@ public class VictorMain {
 //				// got to the school's talk method
 //				school.talk();
 //			}
-			else{
-				print("I don't understand.");
-			}
-		}
-		
+			
 	}
+		
+	
 
 	public static int findKeyword(String searchString, String keyword, int startPosition) {
 		// delete white space
@@ -125,7 +133,7 @@ public class VictorMain {
 			return false;
 		}
 		// check for never
-		if(position - 6 >= 0 && searchString.substring(position - 6, position).equals("never  			")){
+		if(position - 6 >= 0 && searchString.substring(position - 6, position).equals("never ")){
 			return false;
 		}
 		// check for n't
