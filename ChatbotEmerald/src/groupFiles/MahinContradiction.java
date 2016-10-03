@@ -6,7 +6,13 @@ package groupFiles;
 public class MahinContradiction implements Chatbot{
 	private boolean inCalendarLoop;
 	private String calendarResponse;
-	// j
+	/*static Scanner eventMonth;
+	static Scanner eventDay;
+	static Scanner eventYear;
+	static Scanner eventTime;
+	static Scanner eventInfo;
+	*/
+	
 	public boolean isTriggered(String userInput){
 		if(VictorMain.findKeyword(userInput, "date", 0)>=0){
 			return true;
@@ -31,8 +37,13 @@ public class MahinContradiction implements Chatbot{
 				inCalendarLoop = false;
 				VictorMain.print("I don't think you value organization and punctuality.");
 				VictorMain.promptForever();
+			}else{
+				VictorMain.print(addToCalendar());
 			}
-			
 		}
+	}
+	
+	public static String addToCalendar(){
+		return "I will take that as a yes.";
 	}
 }
