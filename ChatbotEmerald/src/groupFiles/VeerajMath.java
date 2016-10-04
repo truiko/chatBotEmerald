@@ -33,21 +33,27 @@ public class VeerajMath implements Chatbot{
 			}
 			
 			VictorMain.print("Enter the first number");
-			if(getIntegerInput(op1.nextLine())){
-				double a = Double.parseDouble(op1.nextLine());
-				System.out.println(a);
-				num1 = op1.nextDouble();
+			String temp = op1.nextLine();
+			if(getIntegerInput(temp)){
+				double a = Double.parseDouble(temp);
+				num1 = a;
+				printResult(num1);
 			}
-			else{
-				VictorMain.print("Please try again");
+			else if(!getIntegerInput(temp)){
+				VictorMain.print("Please enter an integer!");
 				continue;
 			}
 			
 			VictorMain.print("Enter the second number");
-			if(getIntegerInput(op2.nextLine())){
-				double b = Double.parseDouble(op2.nextLine());
-				System.out.println(b);
-				num2 = op2.nextDouble();
+			String temp2 = op2.nextLine();
+			if(getIntegerInput(temp2)){
+				double b = Double.parseDouble(temp2);
+				num2 = b;
+				printResult(num2);
+			}
+			else if(!getIntegerInput(temp)){
+				VictorMain.print("Please enter an integer!");
+				continue;
 			}
 			
 			VictorMain.print("Enter the operation(+, -, *, /)");
@@ -100,20 +106,23 @@ public class VeerajMath implements Chatbot{
 				value = Integer.parseInt(integerString);
 				//will not continue if an error above is thrown
 				isInteger = true;//exits loop if entry is valid
-			 }
-		 
-			 catch(NumberFormatException e){
-				isInteger = false;
-			 }
 			}
+		 
+			catch(NumberFormatException e){
+				//invalid = "false";
+				//System.out.println(invalid);
+				isInteger = false;
+				break;
+			}
+		}
 			return isInteger;
-		 }
+	}
 
 	public boolean isTriggered(String userInput) {
 		if(VictorMain.findKeyword(userInput, "math", 0) >= 0){
 			return true;
 		}
-		return false;
+			return false;
 	}
 	
 	private void printResult(double input){
