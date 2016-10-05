@@ -9,6 +9,8 @@ public class VictorGame implements Chatbot{
 	static int[] playerChoices = {0,0,0};
 	static int rounds = 0;
 	static int largestIndex = 0;
+	static String[] playerRecord = new String[10];
+	static String roundResult;
 	
 	public boolean isTriggered(String userInput){
 		if(VictorMain.findKeyword(userInput, "game", 0) >= 0){
@@ -25,16 +27,24 @@ public class VictorGame implements Chatbot{
 			VictorMain.print("(Type quit to go back.)");
 			// static call on promptInput method from VictorMain class
 			gameResponse = VictorMain.promptInput();
-			if(VictorMain.findKeyword(gameResponse, "quit", 0) >= 0){
+			if(VictorMain.findKeyword(gameResponse, "record", 0) >= 0){
+				showRecord();
+			}
+			if(VictorMain.findKeyword(gameResponse, "quit", 0) >= 0 || rounds >= 9){
+				if(rounds >= 9){
+					VictorMain.print("I'm bored. Let's do something different.");
+				}
 				inGameLoop = false;
 				VictorMain.promptForever();
 			}
 			 if(!isValidChoice(gameResponse)){
 				VictorMain.print("Please choose a valid option.");
 			}else{
-				rounds++;
 				trackUserChoices(gameResponse);
-				VictorMain.print(determineWinner(gameResponse));
+				roundResult = determineWinner(gameResponse);
+				updateRecord(roundResult);
+				rounds++;
+				VictorMain.print(roundResult);
 				VictorMain.print(computerRespond(determineMostUsed(), findLargest()));
 			}
 		}
@@ -45,6 +55,23 @@ public class VictorGame implements Chatbot{
 			return "You sure love using " + mostUsed + ". You have used it " + numTimes + " times already!";
 		}
 		return "Hey! Let's play more rounds!";
+	}
+	
+	public static void showRecord(){
+		for(int i = 0; i < playerRecord.length; i++){
+			if(playerRecord[i].equals(null)){
+				break;
+			}else{
+				VictorMain.print("Round " + (int) (i++) + " result: " + playerRecord[i]);
+			}
+		}
+	}
+	public static void updateRecord(String result){
+		if(VictorMain.findKeyword(result, "computer", 0) >= 0){
+			playerRecord[rounds] = "lost";
+		}else{
+			playerRecord[rounds] = "win";
+		}
 	}
 	
 	public static String determineMostUsed(){
