@@ -8,6 +8,7 @@ public class VictorGame implements Chatbot{
 
 	static int[] playerChoices = {0,0,0};
 	static int rounds = 0;
+	static int largestIndex = 0;
 	
 	public boolean isTriggered(String userInput){
 		if(VictorMain.findKeyword(userInput, "game", 0) >= 0){
@@ -34,19 +35,44 @@ public class VictorGame implements Chatbot{
 				rounds++;
 				trackUserChoices(gameResponse);
 				VictorMain.print(determineWinner(gameResponse));
+				VictorMain.print(computerRespond(determineMostUsed(), findLargest()));
 			}
 		}
 	}
 	
-/*	public static String computerRespond(){
-		if(rounds == 10){
-			
+	public static String computerRespond(String mostUsed, int numTimes){
+		if(rounds == 5){
+			return "You sure love using " + mostUsed + ". You have used it " + numTimes + " times already!";
 		}
-		in progress
+		return "Hey! Let's play more rounds!";
 	}
-	*/
+	
+	public static String determineMostUsed(){
+		if(largestIndex == 0){
+			return "rock";
+		}else{
+			if(largestIndex == 1){
+				return "paper";
+			}else{
+				return "scissor";
+			}
+		}
+	}
+	
+	public static int findLargest(){
+		int largest = playerChoices[0];
+		for(int i = 0; i < playerChoices.length; i++){
+			if(playerChoices[i] >= largest){
+				largest = playerChoices[i];
+			}
+			if(i == playerChoices.length){
+				i = largestIndex;
+			}
+		}
+		return largest;
+	}
+	
 	public static void trackUserChoices(String choice){
-		String mostUsed;
 		if(choice.equals("rock")){
 			playerChoices[0] ++; 
 		}else{
@@ -56,7 +82,6 @@ public class VictorGame implements Chatbot{
 				playerChoices[2] ++;
 			}
 		}
-		// use for loop to compare the numbers of the playerChoices array.
 	}
 	public static String determineWinner(String userChoice){
 		int computerChoice = makeComputerChoice();
