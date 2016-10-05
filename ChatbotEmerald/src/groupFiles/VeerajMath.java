@@ -98,24 +98,24 @@ public class VeerajMath implements Chatbot{
 		VictorMain.print("I'm smarter than you!"); 
 	}
 	
-	private static boolean getIntegerInput(String integerString) {
-		boolean isInteger = false;
-		int value = 0;
-		while(!isInteger){
+	private static double getDoubleInput() {
+		boolean isDouble = false;
+		double value = 0;
+		String integerString = VictorMain.promptInput();
+		while(!isDouble){
 			try{
-				value = Integer.parseInt(integerString);
+				value = Double.parseDouble(integerString);
 				//will not continue if an error above is thrown
-				isInteger = true;//exits loop if entry is valid
+				isDouble = true;//exits loop if entry is valid
 			}
 		 
 			catch(NumberFormatException e){
-				//invalid = "false";
-				//System.out.println(invalid);
-				isInteger = false;
-				break;
+				System.out.println("invalid entry");
+				integerString = VictorMain.promptInput();
+				isDouble = false;
 			}
 		}
-			return isInteger;
+			return value;
 	}
 
 	public boolean isTriggered(String userInput) {
