@@ -56,7 +56,7 @@ public class VictorGame implements Chatbot{
 				playerChoices[2] ++;
 			}
 		}
-		// use for loop to compare the numbers of the playerChoices array
+		// use for loop to compare the numbers of the playerChoices array.
 	}
 	public static String determineWinner(String userChoice){
 		int computerChoice = makeComputerChoice();
