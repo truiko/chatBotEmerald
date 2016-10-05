@@ -1,6 +1,7 @@
 package groupFiles;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 //import groupFiles.VictorMain;
 
@@ -76,7 +77,8 @@ public class MahinCalendar implements Chatbot{
 					if(VictorMain.findKeyword(monthString, theMonths[i], 0) >=0 ){
 						//VictorMain.print(theMonths[i]);
 						addMonth(theMonths[i]);
-						VictorMain.print(monthArray[0]);
+						VictorMain.print(Arrays.toString(monthArray));
+						//VictorMain.print(monthArray[0]);Arrays.toString(monthArray)
 					}
 				}
 				
@@ -114,7 +116,7 @@ public class MahinCalendar implements Chatbot{
 			if(month.equals(theMonths[i])){
 			//if first is empty then input, if filled look next.
 			boolean isFilled = false;
-				while(isFilled){
+				while(isFilled == false){
 					monthArray[monthCounter] = theMonths[i];
 					isFilled = true;
 					monthCounter++;
