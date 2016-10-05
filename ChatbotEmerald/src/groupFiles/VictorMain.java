@@ -155,7 +155,7 @@ public class VictorMain {
 //		school = new VictorSchool();
 		veeraj = new VeerajMath();
 		gabriel = new GabrielJokes();
-		mahin = new MahinContradiction();
+		mahin = new MahinCalendar();
 		victor = new VictorGame();
 	}
 	
