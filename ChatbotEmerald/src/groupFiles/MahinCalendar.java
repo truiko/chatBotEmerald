@@ -45,6 +45,7 @@ public class MahinCalendar implements Chatbot{
 	}
 	
 	public void talk(){
+		
 		formFields();
 		inCalendarLoop = true;
 		while(inCalendarLoop){
