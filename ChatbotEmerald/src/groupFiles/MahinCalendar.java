@@ -5,7 +5,7 @@ import java.util.Scanner;
 //import groupFiles.VictorMain;
 
 
-public class MahinContradiction implements Chatbot{
+public class MahinCalendar implements Chatbot{
 	private boolean inCalendarLoop;
 	
 	static Scanner eventMonth;
