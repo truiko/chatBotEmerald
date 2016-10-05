@@ -34,7 +34,7 @@ public class GabrielJokes implements Chatbot {
 			while(inJokeLoop){
 				String randomJoke = (jokes[new Random().nextInt(jokes.length)]);
 				if(VictorMain.findKeyword(jokeResponse, "who's there", 0) >= 0){
-					VictorMain.print("randomJoke");
+					VictorMain.print("randomJoke"); //hi
 				}
 							
 			}
