@@ -5,6 +5,9 @@ package groupFiles;
 public class VictorGame implements Chatbot{
 	private boolean inGameLoop;
 	private String gameResponse;
+
+	static int[] playerChoices = {0,0,0};
+	static int rounds = 0;
 	
 	public boolean isTriggered(String userInput){
 		if(VictorMain.findKeyword(userInput, "game", 0) >= 0){
@@ -28,11 +31,33 @@ public class VictorGame implements Chatbot{
 			 if(!isValidChoice(gameResponse)){
 				VictorMain.print("Please choose a valid option.");
 			}else{
+				rounds++;
+				trackUserChoices(gameResponse);
 				VictorMain.print(determineWinner(gameResponse));
 			}
 		}
 	}
 	
+/*	public static String computerRespond(){
+		if(rounds == 10){
+			
+		}
+		in progress
+	}
+	*/
+	public static void trackUserChoices(String choice){
+		String mostUsed;
+		if(choice.equals("rock")){
+			playerChoices[0] ++; 
+		}else{
+			if(choice.equals("paper")){
+				playerChoices[1] ++;
+			}else{
+				playerChoices[2] ++;
+			}
+		}
+		// use for loop to compare the numbers of the playerChoices array.
+	}
 	public static String determineWinner(String userChoice){
 		int computerChoice = makeComputerChoice();
 		System.out.println(computerChoice);
