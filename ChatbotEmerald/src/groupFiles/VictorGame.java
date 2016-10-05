@@ -45,29 +45,17 @@ public class VictorGame implements Chatbot{
 			if(userChoice.equals("rock") && computerChoice == SCISSOR){
 				return "The winner is " + VictorMain.user + "!";
 			}else{
-				if(userChoice.equals("rock") && computerChoice == ROCK){
-					return "This round is a tie";
+				if(userChoice.equals("paper") && computerChoice == ROCK){
+					return "The winner is " + VictorMain.user + "!";
 				}else{
-					if(userChoice.equals("paper") && computerChoice == ROCK){
-						return "The winner is " + VictorMain.user + "!";
+					if(userChoice.equals("paper") && computerChoice == SCISSOR){
+						return "The winner is "+ "computer!";
 					}else{
-						if(userChoice.equals("paper") && computerChoice == SCISSOR){
-							return "The winner is "+ "computer!";
+						if(userChoice.equals("scissor") && computerChoice == PAPER){
+							return "The winner is " + VictorMain.user + "!";
 						}else{
-							if(userChoice.equals("paper") && computerChoice == PAPER){
-								return "This round is a tie";
-							}else{
-								if(userChoice.equals("scissor") && computerChoice == PAPER){
-									return "The winner is " + VictorMain.user + "!";
-								}else{
-									if(userChoice.equals("scissor") && computerChoice == ROCK){
-										return "The winner is "+ "computer!";
-									}else{
-										if(userChoice.equals("scissor") && computerChoice == SCISSOR){
-											return "This round is a tie";
-										}
-									}
-								}
+							if(userChoice.equals("scissor") && computerChoice == ROCK){
+								return "The winner is "+ "computer!";
 							}
 						}
 					}
