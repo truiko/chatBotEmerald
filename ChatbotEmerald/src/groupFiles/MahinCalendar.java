@@ -116,7 +116,7 @@ public class MahinCalendar implements Chatbot{
 			VictorMain.print("You are busy this day. Choose another day.");
 			enterValidDay();
 		}else{
-			if(passedProcess == true && isBusy == false)
+			if(passedProcess == true && isBusy == false)//
 			proceedToDays();
 		}
 		//boolean passedProcess = true;
