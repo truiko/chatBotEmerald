@@ -56,7 +56,7 @@ public class GabrielJokes implements Chatbot {
 		}
 		
 	}	
-	
+	//help
 	
 	
 	public static String getJoke(){
