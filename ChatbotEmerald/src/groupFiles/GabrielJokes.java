@@ -58,12 +58,12 @@ public class GabrielJokes implements Chatbot {
 	//help
 	
 	
-	public static String getJoke(){
+	private static String getJoke(){
 		int joke = (int) (Math.random()*jokes.length); 
 		return jokes[joke];
 	}
 	
-	public static void findIndexOfJoke(String joke){
+	private static void findIndexOfJoke(String joke){
 		for(int i = 0; i < jokes.length; i++){
 			if(jokes[i].equals(joke)){
 				jokeIndex = i;
@@ -71,7 +71,7 @@ public class GabrielJokes implements Chatbot {
 		}
 	}
 	
-	 public void variousResponses(){
+	 private void variousResponses(){
 		  int responseChoice = 0;
 		  if(count > 3){
 		   responseChoice = (int) (Math.random()*aggravated.length);
