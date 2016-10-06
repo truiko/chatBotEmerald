@@ -21,15 +21,14 @@ public class VictorGame implements Chatbot{
 
 	public void talk(){
 		inGameLoop = true;
-		VictorMain.print("Let's play a game of Rock, Papers, Scissors!"
-				+ " Choose your weapon.");
+		if(!(rounds >= 9)){
+			VictorMain.print("Let's play a game of Rock, Papers, Scissors!"
+					+ " Choose your weapon.");
+		}
 		while(inGameLoop){
 			VictorMain.print("(Type quit to go back.)");
 			// static call on promptInput method from VictorMain class
 			gameResponse = VictorMain.promptInput();
-			if(VictorMain.findKeyword(gameResponse, "record", 0) >= 0){
-				showRecord();
-			}
 			if(VictorMain.findKeyword(gameResponse, "quit", 0) >= 0 || rounds >= 9){
 				if(rounds >= 9){
 					VictorMain.print("I'm bored. Let's do something different.");
@@ -37,15 +36,19 @@ public class VictorGame implements Chatbot{
 				inGameLoop = false;
 				VictorMain.promptForever();
 			}
-			 if(!isValidChoice(gameResponse)){
-				VictorMain.print("Please choose a valid option.");
+			if(VictorMain.findKeyword(gameResponse, "record", 0) >= 0){
+				showRecord();
 			}else{
-				trackUserChoices(gameResponse);
-				roundResult = determineWinner(gameResponse);
-				updateRecord(roundResult);
-				rounds++;
-				VictorMain.print(roundResult);
-				VictorMain.print(computerRespond(determineMostUsed(), findLargest()));
+				if(!isValidChoice(gameResponse)){
+					VictorMain.print("Please choose a valid option.");
+				}else{
+					trackUserChoices(gameResponse);
+					roundResult = determineWinner(gameResponse);
+					updateRecord(roundResult);
+					rounds++;
+					VictorMain.print(roundResult);
+					VictorMain.print(computerRespond(determineMostUsed(), findLargest()));
+				}
 			}
 		}
 	}
@@ -59,10 +62,11 @@ public class VictorGame implements Chatbot{
 	
 	public static void showRecord(){
 		for(int i = 0; i < playerRecord.length; i++){
-			if(playerRecord[i].equals(null)){
+			int roundNumber = i + 1;
+			if(playerRecord[i] == (null)){
 				break;
 			}else{
-				VictorMain.print("Round " + (int) (i++) + " result: " + playerRecord[i]);
+				VictorMain.print("Round " + roundNumber + " result: " + playerRecord[i]);
 			}
 		}
 	}
@@ -70,7 +74,11 @@ public class VictorGame implements Chatbot{
 		if(VictorMain.findKeyword(result, "computer", 0) >= 0){
 			playerRecord[rounds] = "lost";
 		}else{
-			playerRecord[rounds] = "win";
+			if(VictorMain.findKeyword(result, "tie", 0) >= 0){
+				playerRecord[rounds] = "tie";
+			}else{
+				playerRecord[rounds] = "win";
+			}
 		}
 	}
 	
