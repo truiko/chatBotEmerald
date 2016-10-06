@@ -16,7 +16,6 @@ public class VeerajMath implements Chatbot{
 	private double num2;
 	private String operation;
 	
-	
 	public void talk() {
 		makeFields();
 		inMathLoop = true;
@@ -40,7 +39,6 @@ public class VeerajMath implements Chatbot{
 				printResult(num1);
 			}
 			else if(!getIntegerInput(temp)){
-				VictorMain.print("Please enter an integer!");
 				continue;
 			}
 			
@@ -51,8 +49,7 @@ public class VeerajMath implements Chatbot{
 				num2 = b;
 				printResult(num2);
 			}
-			else if(!getIntegerInput(temp)){
-				VictorMain.print("Please enter an integer!");
+			else if(!getIntegerInput(temp2)){
 				continue;
 			}
 			
@@ -99,23 +96,23 @@ public class VeerajMath implements Chatbot{
 	}
 	
 	private static boolean getIntegerInput(String integerString) {
-		boolean isInteger = false;
-		int value = 0;
-		while(!isInteger){
+		boolean isDouble = false;
+		double value = 0;
+		while(!isDouble){
 			try{
-				value = Integer.parseInt(integerString);
+				value = Double.parseDouble(integerString);
+				System.out.println(value);
 				//will not continue if an error above is thrown
-				isInteger = true;//exits loop if entry is valid
+				isDouble = true;//exits loop if entry is valid
 			}
 		 
 			catch(NumberFormatException e){
-				//invalid = "false";
-				//System.out.println(invalid);
-				isInteger = false;
+				isDouble = false;
+				VictorMain.print("Please enter an integer!");
 				break;
 			}
 		}
-			return isInteger;
+			return isDouble;
 	}
 
 	public boolean isTriggered(String userInput) {
