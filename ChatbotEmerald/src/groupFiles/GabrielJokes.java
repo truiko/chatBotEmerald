@@ -46,8 +46,7 @@ public class GabrielJokes implements Chatbot {
 			else if((VictorMain.findKeyword(jokeResponse, "Amos", 0) >= 0)||(VictorMain.findKeyword(jokeResponse, "Etch", 0) >= 0)||(VictorMain.findKeyword(jokeResponse, "Cows go", 0) >= 0)){
 
 					VictorMain.print(jokeAnswers[jokeIndex]);
-					inJokeLoop= false;
-					VictorMain.promptForever();
+					VictorMain.print("Do you wanna hear another joke?");
 			}
 			else{
 				count++;
@@ -83,6 +82,7 @@ public class GabrielJokes implements Chatbot {
 		   VictorMain.print(calm[responseChoice]);
 		  }
 	 }
+	
 }
 
 	
