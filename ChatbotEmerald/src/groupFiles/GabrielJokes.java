@@ -6,13 +6,13 @@ public class GabrielJokes implements Chatbot {
 	private String jokeChoice;
 	private boolean inJokeLoop;
 	private String jokeResponse;
-	private String[] calm = {"Try again", "Almost there", "You're getting warmer"};
-	private String[] aggravated = {"YOU MUST REALLY HATE JOKES!", "You're doing this in purpose"};
+	private String[] calm = {"Try again.", "Almost there.", "Not quite."};
+	private String[] aggravated = {"YOU MUST REALLY HATE JOKES!", "You're doing this in purpose."};
 	
 	static int jokeCount;
 	static int jokeIndex = 0;
 	static String[] jokes = {"Amos", "Etch", "Cows go"};
-	static String[] jokeAnswers = {"A mosquito", "Bless you", "No silly, cows go moo"};
+	static String[] jokeAnswers = {"A mosquito.", "Bless you.", "No silly, cows go moo."};
 	
 	public boolean isTriggered(String userInput) {
 		if(VictorMain.findKeyword(userInput, "funny", 0) >= 0){
@@ -73,7 +73,7 @@ public class GabrielJokes implements Chatbot {
 	 private void knockKnockLoop(){
 		 if(VictorMain.findKeyword(jokeResponse, "no", 0)>= 0){
 				inJokeLoop = false;
-				VictorMain.print("Fine then");
+				VictorMain.print("Fine then.");
 				VictorMain.promptForever();
 			}
 			else if((VictorMain.findKeyword(jokeResponse, "already", 0)>= 0) || (VictorMain.findKeyword(jokeResponse, "before", 0)>= 0)){
