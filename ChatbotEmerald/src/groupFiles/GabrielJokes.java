@@ -39,29 +39,23 @@ public class GabrielJokes implements Chatbot {
 			else if((VictorMain.findKeyword(jokeResponse, "yeah", 0)>= 0) || (VictorMain.findKeyword(jokeResponse, "yes", 0) >= 0)){
 				VictorMain.print("Knock knock.");	
 			}
-			else if((VictorMain.findKeyword(jokeResponse, "there", 0)>= 0)){
-				if(jokeResponse.equals("there")){
+			else if((VictorMain.findKeyword(jokeResponse, "who's there", 0)>= 0)){
 					VictorMain.print(jokeChoice);
-				}
-				else if(!jokeResponse.equals("there")){
-					count++;
-					variousResponses();
-				}
-			}
-			else if((VictorMain.findKeyword(jokeResponse, "Amos", 0) >= 0)||(VictorMain.findKeyword(jokeResponse, "Etch", 0) >= 0)||(VictorMain.findKeyword(jokeResponse, "Cows go", 0) >= 0)){
-				if(jokeResponse.equals(jokeChoice)){
-					VictorMain.print(jokeAnswers[jokeIndex]);
-					inJokeLoop= false;
-					VictorMain.promptForever();
-				}
-				else if(!jokeResponse.equals(jokeChoice)){
-					count++;
-					variousResponses();
-				}
 			}
 			
-		}	
-	}
+			else if((VictorMain.findKeyword(jokeResponse, "Amos", 0) >= 0)||(VictorMain.findKeyword(jokeResponse, "Etch", 0) >= 0)||(VictorMain.findKeyword(jokeResponse, "Cows go", 0) >= 0)){
+
+					VictorMain.print(jokeAnswers[jokeIndex]);
+					VictorMain.print("Do you wanna hear another joke?");
+			}
+			else{
+				count++;
+				variousResponses();
+			}
+		}
+		
+	}	
+	//help
 	
 	
 	public static String getJoke(){
@@ -88,6 +82,7 @@ public class GabrielJokes implements Chatbot {
 		   VictorMain.print(calm[responseChoice]);
 		  }
 	 }
+	
 }
 
 	
