@@ -27,7 +27,6 @@ public class VictorGame implements Chatbot{
 		}
 		while(inGameLoop){
 			VictorMain.print("(Type quit to go back.)");
-			// static call on promptInput method from VictorMain class
 			gameResponse = VictorMain.promptInput();
 			if(VictorMain.findKeyword(gameResponse, "quit", 0) >= 0 || rounds >= 9){
 				if(rounds >= 9){
