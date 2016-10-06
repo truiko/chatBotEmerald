@@ -22,7 +22,7 @@ public class VeerajMath implements Chatbot{
 			"Start studying more often"};
 	
 	public void talk() {
-		//finish
+		//finishcd
 		makeFields();
 		inMathLoop = true;
 		VictorMain.print("ONLY USE NUMERICS");
