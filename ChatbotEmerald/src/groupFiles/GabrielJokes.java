@@ -57,7 +57,7 @@ public class GabrielJokes implements Chatbot {
 	}	
 	
 	
-	
+	//helper methods
 	private static String getJoke(){
 		int joke = (int) (Math.random()*jokes.length); 
 		return jokes[joke];
