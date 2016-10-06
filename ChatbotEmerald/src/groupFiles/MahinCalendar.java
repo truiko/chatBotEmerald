@@ -17,6 +17,7 @@ public class MahinCalendar implements Chatbot{
 	static Scanner eventInfo;
 	static Scanner leave;
 	private String leaveString;
+	private String infoString;
 	
 	String[] infoArray = new String[7];
 	String[] dayArray = new String[7];
@@ -45,10 +46,10 @@ public class MahinCalendar implements Chatbot{
 	}
 	
 	public void talk(){
-		
 		formFields();
 		inCalendarLoop = true;
 		VictorMain.print("Would you like to add things to my calendar for this week?");
+		//showEntry();
 		while(inCalendarLoop){
 			VictorMain.print("You can say 'quit' to exit this part.");
 			leaveString = leave.nextLine();
@@ -62,54 +63,73 @@ public class MahinCalendar implements Chatbot{
 				VictorMain.print("I will take that as a yes. Which day? Monday, Tuesday, Wednesday, Thursday, or Friday?");
 				dayString = eventDay.nextLine();
 				dayString = dayString.toLowerCase();
-				for(int i = 0; i < daysOfTheWeek.length; i++){
-					if(VictorMain.findKeyword(dayString, daysOfTheWeek[i], 0) >= 0){
-						addDay(daysOfTheWeek[i]);
-						//VictorMain.print(Arrays.toString(dayArray));
-					}
-				}
-				if(dayString != "monday"){
+				if(!validDay(dayString)){
 					VictorMain.print("Enter valid day");
+				}else{
 					proceedToDays();
+					VictorMain.print("Add some information about this day.");
+					proceedToInfo();
 				}
-				//proceedToDays();
-			}
-		}	
-	}			
-				//for(int i = 0; i < theMonths.length; i++){
-					//if(VictorMain.findKeyword(dayString, daysOfTheWeek[i], 0) >=0 ){
-						//VictorMain.print(theMonths[i]); was commented out before
-						//addMonth(theMonths[i]);
-						
-						
-						//VictorMain.print(Arrays.toString(monthArray));
-						//VictorMain.print(monthArray[0]);Arrays.toString(monthArray)
-				//	}
-				//}
-				
-				//VictorMain.print("Which year?");
-				//yearString = eventYear.nextLine();
-				//int enteredYear = Integer.parseInt(yearString);
-				//addYear(enteredYear);
-			//}
-		
-	//}
+				}
+		}
+	}
 	public void proceedToDays(){
-		//VictorMain.print("I will take that as a yes. Which day? Monday, Tuesday, Wednesday, Thursday, or Friday?");
-		dayString = eventDay.nextLine();
-		dayString = dayString.toLowerCase();
-		//calendarResponse = VictorMain.promptInput();
-		//calendarResponse = calendarResponse.toLowerCase();
 		for(int i = 0; i < daysOfTheWeek.length; i++){
-			if(VictorMain.findKeyword(dayString, daysOfTheWeek[i], 0) >= 0){
-				//VictorMain.print("Cool."); for testing
-				addDay(daysOfTheWeek[i]);
-			}
-		}	
+			if(dayString.equals(daysOfTheWeek[i])){
+				busyArray[i] = true;
+	
+				dayString = eventDay.nextLine();
+				dayString = dayString.toLowerCase();
+			}else{
+				if(VictorMain.findKeyword(dayString, daysOfTheWeek[i], 0) >= 0){
+					//VictorMain.print("Cool."); for testing
+					addDay(daysOfTheWeek[i]);
+				}
+			}	
+		}
 		VictorMain.print(Arrays.toString(dayArray));
 	}
-	public void invalidDay(){
-		VictorMain.print("Please enter a valid day."); 
+	
+	/*public void determineBusiness(String day){
+		for(int i = 0; i < daysOfTheWeek.length; i++){
+			if(day.equals(daysOfTheWeek[i])){
+				busyArray[i] = true;
+			}
+		}
+	}*/
+	
+	public void proceedToInfo(){
+		infoString = eventInfo.nextLine();
+		infoString = infoString.toLowerCase();
+		addInfo(infoString);
+		VictorMain.print(Arrays.toString(infoArray));
+	}
+	
+	public void showEntry(){
+		for(int i = 0; i < dayArray.length; i++){
+			if(dayArray[i].equals("null")){
+				VictorMain.print("");
+			}
+			if(infoArray[i].equals("null")){
+				VictorMain.print("");
+			}
+			//VictorMain.print(Arrays.toString(dayArray[i])+" - "+Arrays.toString(infoArray[i]) + ";"); fix this
+		}
+	}
+	
+	public void addInfo(String info){
+		infoArray[infoCounter] = info;
+		infoCounter++;
+	}
+	
+	public boolean validDay(String input){
+		boolean valid = false;
+		for(int i = 0; i < daysOfTheWeek.length; i++){
+			if(input.equals(daysOfTheWeek[i])){
+				valid = true;
+			}
+		}
+		return valid;
 	}
 	
 	private void formFields(){
@@ -118,24 +138,6 @@ public class MahinCalendar implements Chatbot{
 		leave = new Scanner(System.in);
 	}
 	
-	//public boolean isValid(String input){
-	//	if(input )
-	//}
-	
-	/*public void addMonth(String month){
-		for(int i = 0; i < theMonths.length; i++){
-			if(month.equals(theMonths[i])){
-			//if first is empty then input, if filled look next.
-			boolean isFilled = false;
-				while(isFilled == false){
-					monthArray[monthCounter] = theMonths[i];
-					isFilled = true;
-					monthCounter++;
-					//else print try again
-				}
-			}
-		}
-	}*/
 	public void addDay(String day){
 		for(int i = 0; i < daysOfTheWeek.length; i++){
 			if(day.equals(daysOfTheWeek[i])){
@@ -148,39 +150,4 @@ public class MahinCalendar implements Chatbot{
 			}
 		}
 	}
-	
-	/*public void addYear(int year){
-		if(year >= 2016){
-			yearArray[yearCounter] = year;
-			yearCounter++;
-		}else{
-			VictorMain.print("It's 2016.");
-		}
-	}*/
-	
-	/*public void addDay(int day){ 
-		int maxDays = 0;
-		if(monthArray[(monthCounter - 1)] == theMonths[1] && isLeapYear){
-			maxDays = 29;
-		}
-		if(monthArray[(monthCounter - 1)] == theMonths[1] && !isLeapYear){
-			maxDays = 28;
-		}
-		//0,2,4,6,7,9,11 are indexes of theMonths[] for months with 31 days
-		if(monthArray[monthCounter - 1] == theMonths[0] || monthArray[monthCounter - 1] == theMonths[2] || monthArray[monthCounter - 1] == theMonths[4] || 
-				monthArray[monthCounter - 1] == theMonths[6] || monthArray[monthCounter - 1] == theMonths[7] ||  monthArray[monthCounter - 1] == theMonths[9] || 
-				monthArray[monthCounter - 1] == theMonths[11]){
-			maxDays = 31; 
-		}
-		if(monthArray[monthCounter - 1] == theMonths[3] || monthArray[monthCounter - 1] == theMonths[5] || monthArray[monthCounter - 1] == theMonths[8] || 
-				monthArray[monthCounter - 1] == theMonths[10]){
-			maxDays = 30; 
-		}
-		if(day > 0 && day <= maxDays){
-			dayArray[dayCounter] = day;
-			dayCounter++;
-		}else{
-			VictorMain.print("You don't seem to know how many days are in"+monthArray[monthCounter - 1]);
-		}
-	}*/
 }
