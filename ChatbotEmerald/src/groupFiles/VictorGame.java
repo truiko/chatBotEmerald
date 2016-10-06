@@ -44,15 +44,25 @@ public class VictorGame implements Chatbot{
 					trackUserChoices(gameResponse);
 					roundResult = determineWinner(gameResponse);
 					updateRecord(roundResult);
-					rounds++;
+					
 					VictorMain.print(roundResult);
 					VictorMain.print(computerRespond(determineMostUsed(), findLargest()));
+					rounds++;
 				}
 			}
 		}
 	}
 	
 	public static String computerRespond(String mostUsed, int numTimes){
+		if(rounds > 1){
+			if(playerRecord[rounds - 1].equals(playerRecord[rounds-2]) && playerRecord[rounds].equals("lose")){
+				return "You are really bad at this game!";
+			}else{
+				if(playerRecord[rounds - 1].equals(playerRecord[rounds-2]) && playerRecord[rounds].equals("win") ){
+					return "You are too good at this game. You are cheating!";
+				}
+			}
+		}
 		if(rounds == 5){
 			return "You sure love using " + mostUsed + ". You have used it " + numTimes + " times already!";
 		}
