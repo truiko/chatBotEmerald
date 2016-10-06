@@ -1,6 +1,6 @@
 package groupFiles;
 
-//import java.util.Scanner;
+import java.util.Scanner;
 import java.util.Arrays;
 
 //import groupFiles.VictorMain;
@@ -12,17 +12,18 @@ public class MahinCalendar implements Chatbot{
 	
 	//static Scanner eventTime;
 	
-	/*static Scanner eventDay;
+	static Scanner eventDay;
 	private String dayString;
 	static Scanner eventInfo;
 	static Scanner leave;
-	private String leaveString;*/
+	private String leaveString;
 	
 	String[] infoArray = new String[7];
 	String[] dayArray = new String[7];
 	boolean[] busyArray = new boolean[7];
 	String[] daysOfTheWeek = {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
 	int dayCounter = 0;
+	int infoCounter = 0;
 	
 	//String[] theMonths = {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
 	//int[] monthDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -45,33 +46,36 @@ public class MahinCalendar implements Chatbot{
 	
 	public void talk(){
 		
-		//formFields();
+		formFields();
 		inCalendarLoop = true;
 		VictorMain.print("Would you like to add things to my calendar for this week?");
 		while(inCalendarLoop){
 			VictorMain.print("You can say 'quit' to exit this part.");
-			//leaveString = leave.nextLine();
-			//leaveString = leaveString.toLowerCase();
-			calendarResponse = VictorMain.promptInput();
-			if(VictorMain.findKeyword(calendarResponse, "no", 0) >= 0||VictorMain.findKeyword(calendarResponse, "quit", 0) >= 0 ){
+			leaveString = leave.nextLine();
+			leaveString = leaveString.toLowerCase();
+			//calendarResponse = VictorMain.promptInput();
+			if(VictorMain.findKeyword(leaveString, "no", 0) >= 0||VictorMain.findKeyword(leaveString, "quit", 0) >= 0 ){
 				inCalendarLoop = false;
 				VictorMain.print("I don't think you value organization and punctuality.");
 				VictorMain.promptForever();
 			}else{
 				VictorMain.print("I will take that as a yes. Which day? Monday, Tuesday, Wednesday, Thursday, or Friday?");
-				//dayString = eventDay.nextLine();
-				//dayString = dayString.toLowerCase();
-				calendarResponse = VictorMain.promptInput();
-				calendarResponse = calendarResponse.toLowerCase();
+				dayString = eventDay.nextLine();
+				dayString = dayString.toLowerCase();
 				for(int i = 0; i < daysOfTheWeek.length; i++){
-					if(VictorMain.findKeyword(calendarResponse, daysOfTheWeek[i], 0) >= 0){
-						//VictorMain.print("Cool."); for testing
+					if(VictorMain.findKeyword(dayString, daysOfTheWeek[i], 0) >= 0){
 						addDay(daysOfTheWeek[i]);
-						VictorMain.print(Arrays.toString(dayArray)); //for testing
+						//VictorMain.print(Arrays.toString(dayArray));
 					}
 				}
-				
-				
+				if(dayString != "monday"){
+					VictorMain.print("Enter valid day");
+					proceedToDays();
+				}
+				//proceedToDays();
+			}
+		}	
+	}			
 				//for(int i = 0; i < theMonths.length; i++){
 					//if(VictorMain.findKeyword(dayString, daysOfTheWeek[i], 0) >=0 ){
 						//VictorMain.print(theMonths[i]); was commented out before
@@ -87,15 +91,36 @@ public class MahinCalendar implements Chatbot{
 				//yearString = eventYear.nextLine();
 				//int enteredYear = Integer.parseInt(yearString);
 				//addYear(enteredYear);
+			//}
+		
+	//}
+	public void proceedToDays(){
+		//VictorMain.print("I will take that as a yes. Which day? Monday, Tuesday, Wednesday, Thursday, or Friday?");
+		dayString = eventDay.nextLine();
+		dayString = dayString.toLowerCase();
+		//calendarResponse = VictorMain.promptInput();
+		//calendarResponse = calendarResponse.toLowerCase();
+		for(int i = 0; i < daysOfTheWeek.length; i++){
+			if(VictorMain.findKeyword(dayString, daysOfTheWeek[i], 0) >= 0){
+				//VictorMain.print("Cool."); for testing
+				addDay(daysOfTheWeek[i]);
 			}
-		}
+		}	
+		VictorMain.print(Arrays.toString(dayArray));
+	}
+	public void invalidDay(){
+		VictorMain.print("Please enter a valid day."); 
 	}
 	
-	/*private void formFields(){
+	private void formFields(){
 		eventDay = new Scanner(System.in);
 		eventInfo = new Scanner(System.in);
 		leave = new Scanner(System.in);
-	}*/
+	}
+	
+	//public boolean isValid(String input){
+	//	if(input )
+	//}
 	
 	/*public void addMonth(String month){
 		for(int i = 0; i < theMonths.length; i++){
