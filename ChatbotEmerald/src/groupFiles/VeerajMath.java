@@ -15,12 +15,19 @@ public class VeerajMath implements Chatbot{
 	private double num1;
 	private double num2;
 	private String operation;
+	private String[] responses = {"Wow, you can't do basic math!", 
+			"You need to go back to first grade", 
+			"What are you doing with your life", 
+			"You're not as smart as you think",
+			"Start studying more often"};
 	
 	public void talk() {
+		//finishcd
 		makeFields();
 		inMathLoop = true;
+		VictorMain.print("ONLY USE NUMERICS");
 		while(inMathLoop){
-			VictorMain.print("ONLY USE INTEGERS. Do you want to leave?");
+			VictorMain.print("Do you want to leave?");
 			quit2 = quit.nextLine();
 			quit2 = quit2.toLowerCase();
 			
@@ -32,29 +39,17 @@ public class VeerajMath implements Chatbot{
 			}
 			
 			VictorMain.print("Enter the first number");
-			String temp = op1.nextLine();
-			if(getIntegerInput(temp)){
-				double a = Double.parseDouble(temp);
-				num1 = a;
-				printResult(num1);
-			}
-			else if(!getIntegerInput(temp)){
-				continue;
-			}
-			
+			num1 = getDoubleInput();
+			System.out.println("You entered: " + num1);
+
 			VictorMain.print("Enter the second number");
-			String temp2 = op2.nextLine();
-			if(getIntegerInput(temp2)){
-				double b = Double.parseDouble(temp2);
-				num2 = b;
-				printResult(num2);
-			}
-			else if(!getIntegerInput(temp2)){
-				continue;
-			}
+			num2 = getDoubleInput();
+			System.out.println("You entered: " + num2);
+
 			
 			VictorMain.print("Enter the operation(+, -, *, /)");
 			operation = mid.nextLine();
+			System.out.println("You entered: " + operation);
 			
 			switch (operation){
 				case "+":
@@ -77,42 +72,42 @@ public class VeerajMath implements Chatbot{
 	
 	private void add(double one, double two){
 		printResult(one + two);
-		VictorMain.print("It's sad that you can't do simple addition");
+		System.out.println(responses[(int) ((Math.random() * 4))]);
 	}
 	
 	private void subtract(double one, double two){
 		printResult(one - two);
-		VictorMain.print("You should go back to elementary school");
+		System.out.println(responses[(int) ((Math.random() * 4))]);
 	}
 	
 	private void multiply(double one, double two){
 		printResult(one * two);
-		VictorMain.print("You shouldn't rely on technology to do all the work for you");
+		System.out.println(responses[(int) ((Math.random() * 4))]);
 	}
-	
+
 	private void divide(double one, double two){
 		printResult(one / two);
-		VictorMain.print("I'm smarter than you!"); 
+		System.out.println(responses[(int) ((Math.random() * 4))]);
 	}
 	
-	private static boolean getIntegerInput(String integerString) {
+
+	private static double getDoubleInput() {
 		boolean isDouble = false;
 		double value = 0;
+		String doubleString = VictorMain.promptInput();
 		while(!isDouble){
 			try{
-				value = Double.parseDouble(integerString);
-				System.out.println(value);
+				value = Double.parseDouble(doubleString);
 				//will not continue if an error above is thrown
 				isDouble = true;//exits loop if entry is valid
 			}
 		 
 			catch(NumberFormatException e){
-				isDouble = false;
 				VictorMain.print("Please enter an integer!");
-				break;
+				doubleString = VictorMain.promptInput();
 			}
 		}
-			return isDouble;
+			return value;
 	}
 
 	public boolean isTriggered(String userInput) {
