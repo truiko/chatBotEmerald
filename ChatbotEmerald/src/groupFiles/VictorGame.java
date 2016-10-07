@@ -28,6 +28,7 @@ public class VictorGame implements Chatbot{
 		while(inGameLoop){
 			VictorMain.print("(Type quit to go back.)");
 			gameResponse = VictorMain.promptInput();
+			gameResponse = gameResponse.toLowerCase();
 			if(VictorMain.findKeyword(gameResponse, "quit", 0) >= 0 || rounds >= 9){
 				if(rounds >= 9){
 					VictorMain.print("I'm bored. Let's do something different.");
@@ -44,10 +45,10 @@ public class VictorGame implements Chatbot{
 					trackUserChoices(gameResponse);
 					roundResult = determineWinner(gameResponse);
 					updateRecord(roundResult);
-					
+					rounds++;
 					VictorMain.print(roundResult);
 					VictorMain.print(computerRespond(determineMostUsed(), findLargest()));
-					rounds++;
+					
 				}
 			}
 		}
@@ -55,10 +56,10 @@ public class VictorGame implements Chatbot{
 	
 	public static String computerRespond(String mostUsed, int numTimes){
 		if(rounds > 1){
-			if(playerRecord[rounds - 1].equals(playerRecord[rounds-2]) && playerRecord[rounds].equals("lose")){
+			if(playerRecord[rounds - 1].equals(playerRecord[rounds-2]) && playerRecord[rounds - 1].equals("lost")){
 				return "You are really bad at this game!";
 			}else{
-				if(playerRecord[rounds - 1].equals(playerRecord[rounds-2]) && playerRecord[rounds].equals("win") ){
+				if(playerRecord[rounds - 1].equals(playerRecord[rounds-2]) && playerRecord[rounds - 1].equals("win") ){
 					return "You are too good at this game. You are cheating!";
 				}
 			}
@@ -129,7 +130,6 @@ public class VictorGame implements Chatbot{
 	}
 	public static String determineWinner(String userChoice){
 		int computerChoice = makeComputerChoice();
-		System.out.println(computerChoice);
 		int ROCK = 1;
 		int PAPER = 2;
 		int SCISSOR = 3;
