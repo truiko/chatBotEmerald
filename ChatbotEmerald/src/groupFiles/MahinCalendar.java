@@ -64,7 +64,10 @@ public class MahinCalendar implements Chatbot{
 				VictorMain.print("I will take that as a yes. Which day? Monday, Tuesday, Wednesday, Thursday, or Friday?");
 				dayString = enterValidDay();
 				//updateBusiness();
-				determineBusiness(dayString);
+				//determineBusiness(dayString);
+				//System.out.println(getIndexOfDayEntered(dayString));
+				determineBusiness(getIndexOfDayEntered(dayString));
+				
 					//proceedToDays();
 					//VictorMain.print("Add some information about this day.");
 					proceedToInfo();
@@ -107,7 +110,7 @@ public class MahinCalendar implements Chatbot{
 		}
 		
 	
-	public void determineBusiness(String day){
+	/*public void determineBusiness(String day){
 		System.out.println("Hi");
 		VictorMain.print(Arrays.toString(busyArray));
 		boolean isBusy = false; //was false
@@ -134,8 +137,30 @@ public class MahinCalendar implements Chatbot{
 		if(passedProcess == true && isBusy == false){
 			proceedToDays();
 		}
-	}
+	}*/
 		//boolean passedProcess = true;
+	
+	public int getIndexOfDayEntered(String dayEntered){
+		int counter = 0;
+		boolean notFound = true;
+		while(notFound == true){
+			if(daysOfTheWeek[counter] != dayEntered){
+			counter++;	
+			}else{
+				notFound = false;
+			}
+		}
+			return counter;
+	}
+	
+	public void determineBusiness(int index){
+		if(busyArray[index] == false){
+			proceedToDays();
+		}else{
+			VictorMain.print("This day is busy. Choose another day.");
+			inCalendarLoop = false;
+		}
+	}
 	
 	
 	public void proceedToInfo(){
