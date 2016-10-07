@@ -19,6 +19,7 @@ public class MahinCalendar implements Chatbot{
 	String[] dayArray = new String[7];
 	boolean[] busyArray = new boolean[7];
 	String[] daysOfTheWeek = {"monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"};
+	String[] initialChatbotResponses = {"Well then...", "I don't think you value organization and punctuality", "Perhaps you already have a calendar to add things to..."};
 	int dayCounter = 0;
 	int infoCounter = 0;
 	
@@ -55,7 +56,7 @@ public class MahinCalendar implements Chatbot{
 		
 			if(VictorMain.findKeyword(leaveString, "no", 0) >= 0||VictorMain.findKeyword(leaveString, "quit", 0) >= 0 ){
 				inCalendarLoop = false;
-				VictorMain.print("I don't think you value organization and punctuality.");
+				VictorMain.print(initialChatbotResponses[(int) (Math.random() * initialChatbotResponses.length)]);
 				VictorMain.promptForever();
 			}else{
 				VictorMain.print("I will take that as a yes. Which day? Monday, Tuesday, Wednesday, Thursday, or Friday?");
