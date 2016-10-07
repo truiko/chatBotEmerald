@@ -64,13 +64,29 @@ public class MahinCalendar implements Chatbot{
 				getIndex = getIndexOfDayEntered(dayString);
 				determineBusiness(getIndex);
 				
-					proceedToInfo();
-					showEntry();
+				proceedToInfo();
+				showEntry();
 			}
 		}
 	}
 	
-	public String enterValidDay(){
+	private void formFields(){
+		eventDay = new Scanner(System.in);
+		eventInfo = new Scanner(System.in);
+		leave = new Scanner(System.in);
+	}
+	
+	private boolean validDay(String input){
+		boolean valid = false;
+		for(int i = 0; i < daysOfTheWeek.length; i++){
+			if(input.equals(daysOfTheWeek[i])){
+				valid = true;
+			}
+		}
+		return valid;
+	}
+	
+	private String enterValidDay(){
 		boolean waitingForInput = true;
 		VictorMain.print("Please enter a day.");
 		String dayString = VictorMain.promptInput();
@@ -86,17 +102,7 @@ public class MahinCalendar implements Chatbot{
 		return dayString;
 	}
 	
-	
-	public void proceedToDays(){
-		VictorMain.print("Add some information about this day.");
-		for(int i = 0; i < daysOfTheWeek.length; i++){
-				if(VictorMain.findKeyword(dayString, daysOfTheWeek[i], 0) >= 0){
-					addDay(daysOfTheWeek[i]);
-				}
-			}	
-		}
-		
-	public int getIndexOfDayEntered(String dayEntered){
+	private int getIndexOfDayEntered(String dayEntered){
 		int counter = 0;
 		
 		if(VictorMain.findKeyword(dayEntered, "monday", 0) >= 0){
@@ -123,7 +129,7 @@ public class MahinCalendar implements Chatbot{
 		return counter;
 	}
 	
-	public void determineBusiness(int index){
+	private void determineBusiness(int index){
 		if(busyArray[index] == false){
 			proceedToDays();
 		}
@@ -134,26 +140,29 @@ public class MahinCalendar implements Chatbot{
 		}
 	}
 	
-	
-	public void proceedToInfo(){
-		infoString = eventInfo.nextLine();
-		infoString = infoString.toLowerCase();
-		addInfo(infoString);
-		inCalendarLoop = false;
-		VictorMain.promptForever();
-	}
-	
-	public void showEntry(){
-		for(int i = 0; i < dayArray.length; i++){
-			VictorMain.print("Day: " + dayArray[i] + " - " + infoArray[i]);
-		}
-		if(busyArray[0] ==  true && busyArray[1] == true && busyArray[2] == true && busyArray[3] == true && busyArray[4] == true
-				&& busyArray[5] == true && busyArray[6] == true){
-				VictorMain.print("You are busy for the whole week!");
+	private void addDay(String day){
+		for(int i = 0; i < daysOfTheWeek.length; i++){
+			if(day.equals(daysOfTheWeek[i])){
+				boolean isFilled = false;
+				while(isFilled == false){
+					dayArray[dayCounter] = daysOfTheWeek[i];
+					isFilled = true;
+					dayCounter++;
+				}
+			}
 		}
 	}
 	
-	public void addInfo(String info){
+	private void proceedToDays(){
+		VictorMain.print("Add some information about this day.");
+		for(int i = 0; i < daysOfTheWeek.length; i++){
+				if(VictorMain.findKeyword(dayString, daysOfTheWeek[i], 0) >= 0){
+					addDay(daysOfTheWeek[i]);
+				}
+			}	
+		}
+	
+	private void addInfo(String info){
 		infoArray[infoCounter] = info;
 		infoCounter++;
 		
@@ -180,32 +189,21 @@ public class MahinCalendar implements Chatbot{
 		}
 	}
 	
-	public boolean validDay(String input){
-		boolean valid = false;
-		for(int i = 0; i < daysOfTheWeek.length; i++){
-			if(input.equals(daysOfTheWeek[i])){
-				valid = true;
-			}
+	private void proceedToInfo(){
+		infoString = eventInfo.nextLine();
+		infoString = infoString.toLowerCase();
+		addInfo(infoString);
+		inCalendarLoop = false;
+		VictorMain.promptForever();
+	}
+	
+	private void showEntry(){
+		for(int i = 0; i < dayArray.length; i++){
+			VictorMain.print("Day: " + dayArray[i] + " - " + infoArray[i]);
 		}
-		return valid;
-	}
-	
-	private void formFields(){
-		eventDay = new Scanner(System.in);
-		eventInfo = new Scanner(System.in);
-		leave = new Scanner(System.in);
-	}
-	
-	public void addDay(String day){
-		for(int i = 0; i < daysOfTheWeek.length; i++){
-			if(day.equals(daysOfTheWeek[i])){
-				boolean isFilled = false;
-				while(isFilled == false){
-					dayArray[dayCounter] = daysOfTheWeek[i];
-					isFilled = true;
-					dayCounter++;
-				}
-			}
+		if(busyArray[0] ==  true && busyArray[1] == true && busyArray[2] == true && busyArray[3] == true && busyArray[4] == true
+				&& busyArray[5] == true && busyArray[6] == true){
+				VictorMain.print("You are busy for the whole week!");
 		}
 	}
 }
