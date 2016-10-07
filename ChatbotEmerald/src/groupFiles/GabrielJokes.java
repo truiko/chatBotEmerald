@@ -25,9 +25,6 @@ public class GabrielJokes implements Chatbot {
 		inJokeLoop = true;
 		jokeCount = 0;
 		VictorMain.print("Would you like to hear a joke?");
-		getJoke();
-		jokeChoice = getJoke();
-		findIndexOfJoke(jokeChoice);
 		while(inJokeLoop){
 			jokeResponse = VictorMain.promptInput();
 			jokeResponse = jokeResponse.toLowerCase();
@@ -76,19 +73,26 @@ public class GabrielJokes implements Chatbot {
 				VictorMain.print("Fine then.");
 				VictorMain.promptForever();
 			}
-			else if((VictorMain.findKeyword(jokeResponse, "already", 0)>= 0) || (VictorMain.findKeyword(jokeResponse, "before", 0)>= 0)){
+			else if((VictorMain.findKeyword(jokeResponse, "already", 0)>= 0) || 
+					(VictorMain.findKeyword(jokeResponse, "before", 0)>= 0)){
 				inJokeLoop = false;
 				VictorMain.print("I'm very sorry. " + "My library of jokes is quite short. " + "Hopefully version 2.0 will have more. ");
 				VictorMain.promptForever();
 			}
-			else if((VictorMain.findKeyword(jokeResponse, "yeah", 0)>= 0) || (VictorMain.findKeyword(jokeResponse, "yes", 0) >= 0)){
+			else if((VictorMain.findKeyword(jokeResponse, "yeah", 0)>= 0) || 
+					(VictorMain.findKeyword(jokeResponse, "yes", 0) >= 0)){
+				getJoke();
+				jokeChoice = getJoke();
+				findIndexOfJoke(jokeChoice);
 				VictorMain.print("Knock knock.");	
 			}
 			else if((VictorMain.findKeyword(jokeResponse, "who's there", 0)>= 0)){
 					VictorMain.print(jokeChoice);
 			}
 			
-			else if((VictorMain.findKeyword(jokeResponse, "Amos", 0) >= 0)||(VictorMain.findKeyword(jokeResponse, "Etch", 0) >= 0)||(VictorMain.findKeyword(jokeResponse, "Cows go", 0) >= 0)){
+			else if((VictorMain.findKeyword(jokeResponse, "Amos", 0) >= 0)||
+					(VictorMain.findKeyword(jokeResponse, "Etch", 0) >= 0)||
+					(VictorMain.findKeyword(jokeResponse, "Cows go", 0) >= 0)){
 
 					VictorMain.print(jokeAnswers[jokeIndex]);
 					VictorMain.print("Do you wanna hear another joke?");
