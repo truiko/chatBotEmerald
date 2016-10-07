@@ -90,6 +90,7 @@ public class MahinCalendar implements Chatbot{
 				waitingForInput = false;
 			}
 		}
+		
 		return dayString;
 	}
 	
@@ -129,19 +130,19 @@ public class MahinCalendar implements Chatbot{
 			counter = 1;
 		}
 		if(VictorMain.findKeyword(dayEntered, "wednesday", 0) >= 0){
-			counter = 3;
+			counter = 2;
 		}
 		if(VictorMain.findKeyword(dayEntered, "thursday", 0) >= 0){
-			counter = 4;
+			counter = 3;
 		}
 		if(VictorMain.findKeyword(dayEntered, "friday", 0) >= 0){
-			counter = 5;
+			counter = 4;
 		}
 		if(VictorMain.findKeyword(dayEntered, "saturday", 0) >= 0){
-			counter = 6;
+			counter = 5;
 		}
 		if(VictorMain.findKeyword(dayEntered, "sunday", 0) >= 0){
-			counter = 7;
+			counter = 6;
 		}
 		return counter;
 	}
@@ -181,9 +182,31 @@ public class MahinCalendar implements Chatbot{
 	
 	public void addInfo(String info){
 		infoArray[infoCounter] = info;
-		busyArray[busyCounter] = true; //used infoCounter before
+		//busyArray[busyCounter] = true; //used infoCounter before
 		infoCounter++;
-		busyCounter++;
+		//busyCounter++;
+		
+		if(VictorMain.findKeyword(dayString, "monday", 0) >= 0){
+			busyArray[0] = true;
+		}
+		if(VictorMain.findKeyword(dayString, "tuesday", 0) >= 0){
+			busyArray[1] = true;
+		}
+		if(VictorMain.findKeyword(dayString, "wednesday", 0) >= 0){
+			busyArray[2] = true;
+		}
+		if(VictorMain.findKeyword(dayString, "thursday", 0) >= 0){
+			busyArray[3] = true;
+		}
+		if(VictorMain.findKeyword(dayString, "friday", 0) >= 0){
+			busyArray[4] = true;
+		}
+		if(VictorMain.findKeyword(dayString, "saturday", 0) >= 0){
+			busyArray[5] = true;
+		}
+		if(VictorMain.findKeyword(dayString, "sunday", 0) >= 0){
+			busyArray[6] = true;
+		}
 	}
 	
 	public void updateBusiness(){
