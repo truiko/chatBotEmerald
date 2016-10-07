@@ -63,7 +63,7 @@ public class MahinCalendar implements Chatbot{
 				VictorMain.promptForever();
 			}else{
 				VictorMain.print("I will take that as a yes. Which day? Monday, Tuesday, Wednesday, Thursday, or Friday?");
-				if(busyCounter >= 6){
+				if(busyCounter > 6){
 					VictorMain.print("You are busy for the whole week!");
 					inCalendarLoop = false;
 					VictorMain.promptForever();
@@ -107,30 +107,58 @@ public class MahinCalendar implements Chatbot{
 		
 	public int getIndexOfDayEntered(String dayEntered){
 		int counter = 0;
+		/*int counter = 0;
 		boolean notFound = true;
 		while(notFound == true){
 			if(dayEntered != daysOfTheWeek[counter]){
 			counter = counter + 1;	
 				if(counter > 6){
-					return 0;
+					return 1;
 				}
 			}else{
 				notFound = false;
 			}
 		}
 			return counter;
+	}*/
+	//use findkeyword, if it finds monday, return 0, etc.
+		if(VictorMain.findKeyword(dayEntered, "monday", 0) >= 0){
+			counter = 0;
+		}
+		if(VictorMain.findKeyword(dayEntered, "tuesday", 0) >= 0){
+			counter = 1;
+		}
+		if(VictorMain.findKeyword(dayEntered, "wednesday", 0) >= 0){
+			counter = 3;
+		}
+		if(VictorMain.findKeyword(dayEntered, "thursday", 0) >= 0){
+			counter = 4;
+		}
+		if(VictorMain.findKeyword(dayEntered, "friday", 0) >= 0){
+			counter = 5;
+		}
+		if(VictorMain.findKeyword(dayEntered, "saturday", 0) >= 0){
+			counter = 6;
+		}
+		if(VictorMain.findKeyword(dayEntered, "sunday", 0) >= 0){
+			counter = 7;
+		}
+		return counter;
 	}
 	
 	public void determineBusiness(int index){
+		System.out.println(index);
+		VictorMain.print(Arrays.toString(busyArray));
+		System.out.println(busyCounter);
 		if(busyArray[index] == false){
 			proceedToDays();
-		}else{
-			if(busyArray[index] == true){
-				VictorMain.print("This day is busy. Choose another day.");
-				inCalendarLoop = false;
-				VictorMain.promptForever();
-			}
 		}
+		if(busyArray[index] == true){
+			VictorMain.print("This day is busy. Choose another day.");
+			inCalendarLoop = false;
+			VictorMain.promptForever();
+		}
+		VictorMain.print(Arrays.toString(busyArray));
 	}
 	
 	
