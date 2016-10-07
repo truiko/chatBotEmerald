@@ -30,7 +30,7 @@ public class MahinCalendar implements Chatbot{
 	//String[] theMonths = {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
 	//int[] monthDays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	
-	
+	private int getIndex;
 	
 	public boolean isTriggered(String userInput){
 		if(VictorMain.findKeyword(userInput, "date", 0)>=0){
@@ -66,7 +66,9 @@ public class MahinCalendar implements Chatbot{
 				//updateBusiness();
 				//determineBusiness(dayString);
 				//System.out.println(getIndexOfDayEntered(dayString));
-				determineBusiness(getIndexOfDayEntered(dayString));
+				//determineBusiness(getIndexOfDayEntered(dayString));
+				getIndex = getIndexOfDayEntered(dayString);
+				determineBusiness(getIndex);
 				
 					//proceedToDays();
 					//VictorMain.print("Add some information about this day.");
@@ -144,8 +146,11 @@ public class MahinCalendar implements Chatbot{
 		int counter = 0;
 		boolean notFound = true;
 		while(notFound == true){
-			if(daysOfTheWeek[counter] != dayEntered){
-			counter++;	
+			if(dayEntered != daysOfTheWeek[counter]){
+			counter = counter + 1;	
+				if(counter > 6){
+					return 0;
+				}
 			}else{
 				notFound = false;
 			}
