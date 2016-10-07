@@ -22,7 +22,6 @@ public class VeerajMath implements Chatbot{
 			"Start studying more often"};
 	
 	public void talk() {
-		//finish
 		makeFields();
 		inMathLoop = true;
 		VictorMain.print("ONLY USE NUMERICS");
@@ -46,7 +45,6 @@ public class VeerajMath implements Chatbot{
 			num2 = getDoubleInput();
 			System.out.println("You entered: " + num2);
 
-			
 			VictorMain.print("Enter the operation(+, -, *, /)");
 			operation = mid.nextLine();
 			System.out.println("You entered: " + operation);
@@ -90,8 +88,8 @@ public class VeerajMath implements Chatbot{
 		System.out.println(responses[(int) ((Math.random() * 4))]);
 	}
 	
-
 	private static double getDoubleInput() {
+		int counter = 0;
 		boolean isDouble = false;
 		double value = 0;
 		String doubleString = VictorMain.promptInput();
@@ -104,6 +102,11 @@ public class VeerajMath implements Chatbot{
 		 
 			catch(NumberFormatException e){
 				VictorMain.print("Please enter an integer!");
+				counter ++;
+				if (counter > 5){
+					VictorMain.print("Okay, that's it I'm kicking you out");
+					VictorMain.promptForever();
+				}
 				doubleString = VictorMain.promptInput();
 			}
 		}
