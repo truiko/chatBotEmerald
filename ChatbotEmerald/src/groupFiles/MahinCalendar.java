@@ -1,14 +1,12 @@
 package groupFiles;
 
 import java.util.Scanner;
-import java.util.Arrays;
 
-//import groupFiles.VictorMain;
 
 
 public class MahinCalendar implements Chatbot{
 	private boolean inCalendarLoop;
-	//private String calendarResponse;
+	
 	
 	static Scanner eventDay;
 	private String dayString;
@@ -43,7 +41,6 @@ public class MahinCalendar implements Chatbot{
 			return true;
 		}
 		return false;
-		
 	}
 	
 	public void talk(){
@@ -55,7 +52,7 @@ public class MahinCalendar implements Chatbot{
 			VictorMain.print("You can say 'quit' to exit this part.");
 			leaveString = leave.nextLine();
 			leaveString = leaveString.toLowerCase();
-			//calendarResponse = VictorMain.promptInput();
+		
 			if(VictorMain.findKeyword(leaveString, "no", 0) >= 0||VictorMain.findKeyword(leaveString, "quit", 0) >= 0 ){
 				inCalendarLoop = false;
 				VictorMain.print("I don't think you value organization and punctuality.");
@@ -97,8 +94,6 @@ public class MahinCalendar implements Chatbot{
 					addDay(daysOfTheWeek[i]);
 				}
 			}	
-			VictorMain.print(Arrays.toString(dayArray));
-			VictorMain.print(Arrays.toString(busyArray));
 		}
 		
 	public int getIndexOfDayEntered(String dayEntered){
@@ -129,8 +124,6 @@ public class MahinCalendar implements Chatbot{
 	}
 	
 	public void determineBusiness(int index){
-		System.out.println(index);
-		VictorMain.print(Arrays.toString(busyArray));
 		if(busyArray[index] == false){
 			proceedToDays();
 		}
@@ -139,7 +132,6 @@ public class MahinCalendar implements Chatbot{
 			inCalendarLoop = false;
 			VictorMain.promptForever();
 		}
-		VictorMain.print(Arrays.toString(busyArray));
 	}
 	
 	
@@ -148,9 +140,7 @@ public class MahinCalendar implements Chatbot{
 		infoString = infoString.toLowerCase();
 		addInfo(infoString);
 		inCalendarLoop = false;
-		//comment?
 		VictorMain.promptForever();
-		VictorMain.print(Arrays.toString(infoArray));
 	}
 	
 	public void showEntry(){
@@ -161,7 +151,6 @@ public class MahinCalendar implements Chatbot{
 				&& busyArray[5] == true && busyArray[6] == true){
 				VictorMain.print("You are busy for the whole week!");
 		}
-		VictorMain.print(Arrays.toString(busyArray));
 	}
 	
 	public void addInfo(String info){
